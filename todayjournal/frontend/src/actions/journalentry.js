@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { createMessage } from './messages';
+import { createMessage, returnErrors } from './messages';
 
-import { GET_ENTRIES, DELETE_ENTRIES, ADD_ENTRIES, GET_ERRORS } from './types';
+import { GET_ENTRIES, DELETE_ENTRIES, ADD_ENTRIES } from './types';
 
 // GET ENTRIES
 export const getEntries = () => dispatch => {
@@ -13,7 +13,7 @@ export const getEntries = () => dispatch => {
                 payload: res.data
             });
         })
-        .catch(err => console.log(err));
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // DELETE ENTRIES
@@ -41,14 +41,5 @@ export const addEntries = (entry) => dispatch => {
                 payload: res.data
             });
         })
-        .catch(err => {
-            const errors = {
-                msg: err.response.data,
-                status:err.response.status
-            };
-            dispatch({
-                type: GET_ERRORS,
-                payload: errors
-            });
-        });
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
