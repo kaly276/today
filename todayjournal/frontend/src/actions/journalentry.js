@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
+import { tokenConfig } from './auth';
 
 import { GET_ENTRIES, DELETE_ENTRIES, ADD_ENTRIES } from './types';
 
 // GET ENTRIES
-export const getEntries = () => dispatch => {
+export const getEntries = () => (dispatch, getState) => {
     axios
-        .get('/api/todayentry/')
+        .get('/api/todayentry/', tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: GET_ENTRIES,
@@ -17,9 +18,9 @@ export const getEntries = () => dispatch => {
 };
 
 // DELETE ENTRIES
-export const deleteEntries = (id) => dispatch => {
+export const deleteEntries = id => (dispatch, getState) => {
     axios
-        .delete(`/api/todayentry/${id}/`)
+        .delete(`/api/todayentry/${id}/`, tokenConfig(getState))
         .then(res => {
             dispatch(createMessage({ deleteEntry: 'Entry deleted' }));
             dispatch({
@@ -31,9 +32,9 @@ export const deleteEntries = (id) => dispatch => {
 };
 
 // ADD ENTRIES
-export const addEntries = (entry) => dispatch => {
+export const addEntries = entry => (dispatch, getState) => {
     axios
-        .post('/api/todayentry/', entry)
+        .post('/api/todayentry/', entry, tokenConfig(getState))
         .then(res => {
             dispatch(createMessage({ addEntry: 'Entry created' }));
             dispatch({
