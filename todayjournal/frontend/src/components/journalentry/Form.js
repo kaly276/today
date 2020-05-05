@@ -20,6 +20,10 @@ export class Form extends Component {
         const { title, message } = this.state;
         const journalentry = { title, message };
         this.props.addEntries(journalentry);
+        this.setState({
+            title: '',
+            message: ''
+        });
     };
 
     render() {
