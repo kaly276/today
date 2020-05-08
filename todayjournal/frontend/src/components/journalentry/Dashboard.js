@@ -1,13 +1,10 @@
-import React, { Fragment } from 'react';
-import Form from './Form';
-import Entries from './Entries';
-
+import React, { Fragment } from "react";
+import Form from "./Form";
 
 export default function Dashboard() {
     return (
         <Fragment>
             <Form />
-            <Entries />
         </Fragment>
-    )
+    );
 }
