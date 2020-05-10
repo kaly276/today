@@ -8,6 +8,7 @@ export class Entries extends Component {
         journalentry: PropTypes.array.isRequired,
         getEntries: PropTypes.func.isRequired,
         deleteEntries: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool
     };
 
     componentDidMount() {
@@ -15,6 +16,11 @@ export class Entries extends Component {
     }
 
     render() {
+        if (!this.props.isAuthenticated) {
+            return (
+                <Fragment></Fragment>
+            );
+        }
         return (
             <Fragment>
                 <h2>Entries</h2>
@@ -50,6 +56,7 @@ export class Entries extends Component {
 
 const mapStateToProps = (state) => ({
     journalentry: state.journalentry.journalentry,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getEntries, deleteEntries })(Entries);

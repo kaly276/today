@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { returnErrors } from './messages';
+import { getEntries } from './journalentry';
 
 import { USER_LOADED,
     USER_LOADING,
@@ -12,7 +13,7 @@ import { USER_LOADED,
 
 // CHECK TOKEN AND LOAD USER
 export const loadUser = () => (dispatch, getState) => {
-    // user loading
+    // User loading
     dispatch({ type: USER_LOADING });
 
     axios.get('/api/auth/user', tokenConfig(getState)).then(res => {
@@ -53,7 +54,7 @@ export const login = (username, password) => dispatch => {
     });
 };
 
-//----------REGISTER USER-----------//
+// REGISTER USER
 export const register = ({ username, password, email }) => dispatch => {
 
     // Headers
