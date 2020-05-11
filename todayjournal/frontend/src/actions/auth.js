@@ -90,6 +90,8 @@ export const logout = () => (dispatch, getState) => {
     }).catch(err => {
         dispatch(returnErrors(err.response.data, err.response.status));
     });
+
+    
 };
 
 // Setup config with token
