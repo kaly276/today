@@ -6,6 +6,6 @@ A simple journal built with React, Redux, and Django!
 - add entry edit functionality 
 - add entry attachments
 - redesign ui
-  - display entries with cards
+  - ~~display entries with cards~~
   - one page for writing/viewing/editing user entries
   - separate page for user account management
