@@ -21,34 +21,27 @@ export class Entries extends Component {
                 <Fragment></Fragment>
             );
         }
+        console.log("ENTRIES", this.props.journalentry);
         return (
             <Fragment>
                 <h2>Entries</h2>
-                <table className="table table-striped">
-                <thead>
-                    <tr>
-                    <th>Title</th>
-                    <th>Message</th>
-                    <th />
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.props.journalentry.map((entry) => (
-                    <tr key={entry.id}>
-                        <td>{entry.title}</td>
-                        <td>{entry.message}</td>
-                        <td>
-                        <button
-                            onClick={this.props.deleteEntries.bind(this, entry.id)}
-                            className="btn btn-danger btn-sm"
-                        >
-                            Delete
-                        </button>
-                        </td>
-                    </tr>
-                    ))}
-                </tbody>
-                </table>
+                {this.props.journalentry.map((entry) => (
+                <div className="mt-4 mb-4" key={entry.id}>
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">{entry.title}</h5>
+                            <h6 className="card-subtitle mb-2 text-muted">Date Created</h6>
+                            <p className="card-text">{entry.message}</p>
+                            <button
+                                onClick={this.props.deleteEntries.bind(this, entry.id)}
+                                className="btn btn-danger btn-sm"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                ))}
             </Fragment>
         );
     }
