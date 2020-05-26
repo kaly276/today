@@ -38,6 +38,12 @@ export class Entries extends Component {
                             >
                                 Delete
                             </button>
+                            <button 
+                                onClick={() => console.log("EDITED BITCH")}
+                                className="btn btn-link btn-sm ml-3 mr-3"
+                            >
+                                Edit
+                            </button>
                         </div>
                     </div>
                 </div>

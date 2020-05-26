@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createMessage, returnErrors } from './messages';
 import { tokenConfig } from './auth';
 
-import { GET_ENTRIES, DELETE_ENTRIES, ADD_ENTRIES } from './types';
+import { GET_ENTRIES, DELETE_ENTRIES, ADD_ENTRIES, EDIT_ENTRIES } from './types';
 
 // GET ENTRIES
 export const getEntries = () => (dispatch, getState) => {
@@ -44,3 +44,19 @@ export const addEntries = entry => (dispatch, getState) => {
         })
         .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
+
+// EDIT ENTRIES
+/*
+export const editEntries = entry => (dispatch, getState) => {
+    axios
+        .put('/api/todayentry/', entry, tokenConfig(getState))
+        .then(res => {
+            dispatch(createMessage({ editEntry: 'Entry edited' }));
+            dispatch({
+                type: EDIT_ENTRIES,
+                payload: res.data
+            });
+        })
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+*/
