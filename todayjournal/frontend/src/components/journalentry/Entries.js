@@ -2,8 +2,10 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getEntries, deleteEntries } from "../../actions/journalentry";
+import EditForm from "./EditForm";
 
 export class Entries extends Component {
+
     static propTypes = {
         journalentry: PropTypes.array.isRequired,
         getEntries: PropTypes.func.isRequired,
@@ -13,7 +15,11 @@ export class Entries extends Component {
 
     componentDidMount() {
         this.props.getEntries();
-    }
+    };
+
+    onClick = (title, message) => {
+        this.child.onModalOpen(title, message);
+    };
 
     render() {
         if (!this.props.isAuthenticated) {
@@ -39,15 +45,35 @@ export class Entries extends Component {
                                 Delete
                             </button>
                             <button 
-                                onClick={() => console.log("EDITED BITCH")}
+                                onClick={() => this.onClick(entry.title, entry.message)}
                                 className="btn btn-link btn-sm ml-3 mr-3"
+                                data-toggle="modal"
+                                data-target="#editModal"
                             >
-                                Edit
+                                Edit    
                             </button>
                         </div>
                     </div>
                 </div>
                 ))}
+                <div className="modal fade" id="editModal" tabIndex="-1" role="dialog">
+                    <div className="modal-dialog modal-dialog-scrollable" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalScrollableTitle">Edit entry</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <EditForm childRef={ ref => (this.child = ref)} />
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </Fragment>
         );
     }
