@@ -5,7 +5,6 @@ import { getEntries, deleteEntries } from "../../actions/journalentry";
 import EditForm from "./EditForm";
 
 export class Entries extends Component {
-
     static propTypes = {
         journalentry: PropTypes.array.isRequired,
         getEntries: PropTypes.func.isRequired,
@@ -17,9 +16,13 @@ export class Entries extends Component {
         this.props.getEntries();
     };
 
-    onClick = (title, message) => {
-        this.child.onModalOpen(title, message);
+    onEditClick = (id, title, message) => {
+        this.child.onModalOpen(id, title, message);
     };
+
+    onSubmitClick = () => {
+        this.child.onSubmitClick();
+    }
 
     render() {
         if (!this.props.isAuthenticated) {
@@ -45,7 +48,7 @@ export class Entries extends Component {
                                 Delete
                             </button>
                             <button 
-                                onClick={() => this.onClick(entry.title, entry.message)}
+                                onClick={() => this.onEditClick(entry.id, entry.title, entry.message)}
                                 className="btn btn-link btn-sm ml-3 mr-3"
                                 data-toggle="modal"
                                 data-target="#editModal"
@@ -56,6 +59,7 @@ export class Entries extends Component {
                     </div>
                 </div>
                 ))}
+
                 <div className="modal fade" id="editModal" tabIndex="-1" role="dialog">
                     <div className="modal-dialog modal-dialog-scrollable" role="document">
                         <div className="modal-content">
@@ -69,7 +73,14 @@ export class Entries extends Component {
                                 <EditForm childRef={ ref => (this.child = ref)} />
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button 
+                                    onClick={() => this.child.onSubmitClick()}
+                                    type="button" 
+                                    className="btn btn-primary" 
+                                    data-dismiss="modal"
+                                >
+                                    Save changes
+                                </button>
                             </div>
                         </div>
                     </div>

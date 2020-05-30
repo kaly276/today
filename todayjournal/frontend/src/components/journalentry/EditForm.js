@@ -5,6 +5,7 @@ import { editEntries } from '../../actions/journalentry';
 
 export class EditForm extends Component {
     state = {
+        id: '',
         title: '',
         message: ''
     };
@@ -18,25 +19,22 @@ export class EditForm extends Component {
         childRef(this);
     };
 
-    onModalOpen = (newTitle, newMessage) => {
+    onModalOpen = (newId, newTitle, newMessage) => {
         this.setState({
-        title: newTitle,
-        message: newMessage});
-        console.log(newTitle, newMessage);
+            id: newId,
+            title: newTitle,
+            message: newMessage
+        });
+        console.log(newId, newTitle, newMessage);
+    };
+
+    onSubmitClick = () => {
+        const { title, message } = this.state;
+        const journalentry = { title, message };
+        this.props.editEntries(this.state.id, journalentry);
     };
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
-
-    onSubmit = e => {
-        e.preventDefault();
-        const { title, message } = this.state;
-        const journalentry = { title, message };
-        this.props.editEntries(journalentry);
-        this.setState({
-            title: '',
-            message: ''
-        });
-    };
 
     render() {
         const { title, message } = this.state;
@@ -63,14 +61,10 @@ export class EditForm extends Component {
                             value={message}
                         />
                     </div>
-                    <div className='form-group'>
-                        <button type='submit' className='btn btn-link'>Done</button>
-                    </div>
                 </form>
             </div>
         )
     }
 };
-
 
 export default connect(null, { editEntries })(EditForm);

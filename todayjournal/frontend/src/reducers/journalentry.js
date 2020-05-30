@@ -1,4 +1,4 @@
-import { GET_ENTRIES, DELETE_ENTRIES, ADD_ENTRIES } from '../actions/types.js';
+import { GET_ENTRIES, DELETE_ENTRIES, ADD_ENTRIES, EDIT_ENTRIES } from '../actions/types.js';
 
 const initialState = {
     journalentry: []
@@ -12,6 +12,11 @@ export default function(state = initialState, action) {
                 journalentry: action.payload
             };
         case DELETE_ENTRIES:
+            return {
+                ...state,
+                journalentry: state.journalentry.filter(entry => entry.id !== action.payload)
+            };
+        case EDIT_ENTRIES:
             return {
                 ...state,
                 journalentry: state.journalentry.filter(entry => entry.id !== action.payload)

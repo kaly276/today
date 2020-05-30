@@ -36,6 +36,9 @@ export class Alerts extends Component {
             if (message.addEntry) {
                 alert.success(message.addEntry);
             }
+            if (message.editEntry) {
+                alert.success(message.editEntry);
+            }
             if (message.passwordNotMatch) {
                 alert.error(message.passwordNotMatch);
             }
