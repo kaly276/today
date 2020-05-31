@@ -32,6 +32,7 @@ export class EditForm extends Component {
         const { title, message } = this.state;
         const journalentry = { title, message };
         this.props.editEntries(this.state.id, journalentry);
+        window.location.reload();
     };
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
