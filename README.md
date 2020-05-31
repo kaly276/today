@@ -3,9 +3,9 @@ A simple journal built with React, Redux, and Django!
 
 ## Todo: 
 - ~~implement user authentication and accounts~~
-- implement entry edit functionality
+- ~~implement entry edit functionality~~
     - ~~working edit functionality~~
-    - update data on frontend
+    - ~~update data on frontend~~
 - implement entry attachments
 - redesign ui
   - ~~display entries with cards~~
