@@ -1,5 +1,5 @@
 # today.
-A simple journal built with Node.js, React, Redux, and Django!
+A simple journal built with React, Redux, and Django!
 
 ## Todo: 
 - ~~implement user authentication and accounts~~
