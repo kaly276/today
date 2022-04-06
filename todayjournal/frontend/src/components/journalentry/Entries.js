@@ -24,6 +24,10 @@ export class Entries extends Component {
         this.child.onSubmitClick();
     }
 
+    onToneAnalyzeClick = (message) => {
+        console.log(message);        
+    }
+
     render() {
         if (!this.props.isAuthenticated) {
             return (
@@ -55,10 +59,21 @@ export class Entries extends Component {
                             >
                                 Edit    
                             </button>
+                            <button
+                                onClick={() => this.onToneAnalyzeClick(entry.message)}
+                                className="btn btn-link btn-sm ml-3 mr-3"
+                                data-toggle="toast"
+                                data-target="liveToast"
+                                >
+                                Tone Analyze
+                            </button>
+                            
                         </div>
                     </div>
                 </div>
                 ))}
+
+                
 
                 <div className="modal fade" id="editModal" tabIndex="-1" role="dialog">
                     <div className="modal-dialog modal-dialog-scrollable" role="document">

@@ -15,9 +15,8 @@ export class Account extends Component {
         }
 
         return (
-            <Fragment>
-                <Entries />
-            </Fragment>
+            <Entries />
+
         );
     }
 }

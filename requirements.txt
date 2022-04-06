@@ -1,0 +1,8 @@
+djangorestframework
+django-rest-auth
+django-rest-knox
+psycopg2-binary
+pandas
+scikit-learn
+pyspark
+nltk
